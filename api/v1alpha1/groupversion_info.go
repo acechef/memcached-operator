@@ -20,6 +20,7 @@ limitations under the License.
 package v1alpha1
 
 import (
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"sigs.k8s.io/controller-runtime/pkg/scheme"
 )
@@ -34,3 +35,12 @@ var (
 	// AddToScheme adds the types in this group-version to the given scheme.
 	AddToScheme = SchemeBuilder.AddToScheme
 )
+
+func NewOwnerReference(blockOwnerDeletion bool, isController bool) metav1.OwnerReference {
+	return metav1.OwnerReference{
+		APIVersion:         GroupVersion.WithKind("Memcached").GroupVersion().String(),
+		Kind:               GroupVersion.WithKind("Memcached").Kind,
+		BlockOwnerDeletion: &blockOwnerDeletion,
+		Controller:         &isController,
+	}
+}

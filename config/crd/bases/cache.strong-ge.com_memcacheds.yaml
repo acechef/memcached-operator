@@ -36,13 +36,11 @@ spec:
         spec:
           description: MemcachedSpec defines the desired state of Memcached
           properties:
-            size:
-              description: Size is the size of the memcached deployment
-              format: int32
-              minimum: 0
-              type: integer
+            schedule:
+              description: Schedule is the size of the memcached deployment
+              type: string
           required:
-          - size
+          - schedule
           type: object
         status:
           description: MemcachedStatus defines the observed state of Memcached
